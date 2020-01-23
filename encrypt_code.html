@@ -28,16 +28,8 @@ textarea{width:94%;height:300px;margin:0 auto;display:block;background-color:#ff
 .hasil{color:#fff;background:#374760;text-align:center;padding:20px 40px 20px;margin:20px;border-radius:4px}
 button{color:#fff!important;height:50px;font-size:14px;font-weight:bold;background:#07ACEC;padding:15px 25px;border-radius:4px;border:none;outline:none;box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);cursor:pointer;transition:all .4s ease-in-out;text-transform:uppercase;margin-top:15px}  
     </style>    
-    
-    <br />
-<br />
-<br />
-<br />
-<br />
-<article>
-    
 <center>
-<script type="text/javascript">
+<script type='text/javascript'>
     function doencrypt(theform) { 
      if (theform.code.value == "") { 
       alert("NO CODES FOR ENCRYPTION!"); 
@@ -70,7 +62,7 @@ button{color:#fff!important;height:50px;font-size:14px;font-weight:bold;backgrou
     } 
 
     function getletter(num) { 
-     if (num < 10) { 
+     if (num &lt; 10) { 
       return num; 
      } 
      else { 
@@ -89,8 +81,9 @@ function copyToClipboard() {
   document.execCommand("copy"); 
 } 
     </script>
-    
-<div class="hasil">
+<div id="belakang">
+    <br />
+   <div class="hasil">
 <span style="font-size: large;"><b> INPUT :</b></span>
         </div>
 <form method="post" name="pageform" onsubmit="return doencrypt(this);">
@@ -100,12 +93,11 @@ function copyToClipboard() {
 <div class="hasil">
 <span style="font-size: large;"><b> RESULT :</b></span>
     </div>
-<textarea cols="30" id="txtarea" name="ecode" readonly="yes" rows="20"></textarea>
+<textarea cols="40" name="ecode" id="txtarea" readonly="" rows="11"></textarea>
 
-           <br />
-<div class="daerah-tombol-2">
-<input id="button-on" onclick="doencrypt(pageform);" type="button" value="ENCRYPT CODE" />
-<input id="button-on" type="reset" value="RESET" />
+           <div class="daerah-tombol-2">
+<input id="button-on" onclick="doencrypt(pageform);" type="button" value="ENCRYPT CODE"/>
+<input id="button-on" type="reset" value="RESET"/>
 <button id="txtarea" onclick="copyToClipboard();">COPY TO CLIPBOARD</button>
 <script type='text/javascript'>
 //<![CDATA[
@@ -113,6 +105,8 @@ document.write(unescape('%0A%0A%0A%3C%62%72%2F%3E%3C%62%72%2F%3E%4F%52%49%47%49%
 //]]>
 </script>
             </div>
-</form>
+    </form>
 <div style="clear: both;">
-</div></center>
+</div>
+            </div>
+        </center>
