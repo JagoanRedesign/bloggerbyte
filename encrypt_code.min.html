@@ -1,17 +1,11 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <!-- Saved from https://www.bloggerbyte.net -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Encrypt Code</title>
 <style>
-.color000, .post-body a:hover, strong, b{color: #fff;}
-
-element.style {
-}
-.displayinlineblock, .inline-block, .ampstart-social-follow li, .status-msg-wrap a, .post-body a, .btn, .back_toc {
-    display: inline-block;
-}
-.btn, #btn_toc, .fontweight600, .post-body a, .post-body b, .status-msg-wrap a, .tg-bf, .footer1 a {
-    font-weight: 600;
-}
-.color1565c0, .PageList ul li a:hover, .footer-wrapper a:hover, #PopularPosts1 a:hover, .home_page .post:hover h2.post-title a, .post-body pre, .post-body pre code, .post-body code, .post-body a, .home_page .post h3.post-title a:hover, #FeaturedPost h3 a:hover, #toc a:hover, .on-head a:hover {
-    color: #FFC107;
-}
 #outer-wrapper{margin:0 auto;text-align:left;float:none;background-position:center!important}
 #post-wrapper{width:100%;max-width:100%;margin:0 auto;text-align:left;float:none;background-position:center!important}
 .post-body,.post{background-position:center!important}
@@ -40,8 +34,10 @@ textarea{width:94%;height:300px;margin:0 auto;display:block;background-color:#ff
 .hasil{color:#fff;background:#374760;text-align:center;padding:20px 40px 20px;margin:20px;border-radius:4px}
 button{color:#fff!important;height:50px;font-size:14px;font-weight:bold;background:#07ACEC;padding:15px 25px;border-radius:4px;border:none;outline:none;box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);cursor:pointer;transition:all .4s ease-in-out;text-transform:uppercase;margin-top:15px}  
     </style>    
+<article>
+    
 <center>
-<script type='text/javascript'>
+<script type="text/javascript">
     function doencrypt(theform) { 
      if (theform.code.value == "") { 
       alert("NO CODES FOR ENCRYPTION!"); 
@@ -74,7 +70,7 @@ button{color:#fff!important;height:50px;font-size:14px;font-weight:bold;backgrou
     } 
 
     function getletter(num) { 
-     if (num &lt; 10) { 
+     if (num < 10) { 
       return num; 
      } 
      else { 
@@ -94,8 +90,8 @@ function copyToClipboard() {
 } 
     </script>
 <div id="belakang">
-    <br />
-   <div class="hasil">
+<br />
+<div class="hasil">
 <span style="font-size: large;"><b> INPUT :</b></span>
         </div>
 <form method="post" name="pageform" onsubmit="return doencrypt(this);">
@@ -105,11 +101,12 @@ function copyToClipboard() {
 <div class="hasil">
 <span style="font-size: large;"><b> RESULT :</b></span>
     </div>
-<textarea cols="40" name="ecode" id="txtarea" readonly="" rows="11"></textarea>
+<textarea cols="30" id="txtarea" name="ecode" readonly="yes" rows="20"></textarea>
 
-           <div class="daerah-tombol-2">
-<input id="button-on" onclick="doencrypt(pageform);" type="button" value="ENCRYPT CODE"/>
-<input id="button-on" type="reset" value="RESET"/>
+           <br />
+<div class="daerah-tombol-2">
+<input id="button-on" onclick="doencrypt(pageform);" type="button" value="ENCRYPT CODE" />
+<input id="button-on" type="reset" value="RESET" />
 <button id="txtarea" onclick="copyToClipboard();">COPY TO CLIPBOARD</button>
 <script type='text/javascript'>
 //<![CDATA[
@@ -120,5 +117,5 @@ document.write(unescape('%0A%0A%0A%3C%62%72%2F%3E%3C%62%72%2F%3E%4F%52%49%47%49%
     </form>
 <div style="clear: both;">
 </div>
-            </div>
+         
         </center>
