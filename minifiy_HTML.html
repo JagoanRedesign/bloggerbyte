@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <!-- bloggerbyte.net -->
+  <head>
+    <meta charset="utf-8">
+    <title>HTML Compressor</title>
+    <style>*{margin:0;padding:0}body{background-color:white;text-align:center;padding:50px 50px}textarea{display:block;text-align:left;width:98%;height:250px;border:1px solid black;background-color:white;font:normal 12px/15px "Inconsolata","Monaco","Consolas","Andale Mono","Bitstream Vera Sans Mono","Courier New",Courier,monospace;color:black;margin:10px auto;padding:0 0}button{cursor:pointer}</style>
+  </head>
+  <body>
+    <h1>Mini HTML Compressor</h1>
+    <textarea id="ta" spellcheck="false"></textarea>
+    <button id="bt">Compress HTML</button><script>(function(){var ta=document.getElementById('ta'),bt=document.getElementById('bt');function compress(){var v=ta.value;v=v.replace(/(>)?\s+/g,'$1 ');v=v.replace(/([\n\r\t ]+)</g,'<');ta.value=v;ta.focus();ta.select()}bt.onclick=compress})();</script>
+  <script type='text/javascript'>
+//<![CDATA[
+document.write(unescape('%3C%62%72%2F%3E%3C%62%72%2F%3E%43%52%45%41%54%45%44%20%A9%20%3C%61%20%68%72%65%66%3D%22%68%74%74%70%73%3A%2F%2F%77%77%77%2E%62%6C%6F%67%67%65%72%62%79%74%65%2E%6E%65%74%2F%22%3E%3C%73%70%61%6E%20%73%74%79%6C%65%3D%22%63%6F%6C%6F%72%3A%20%23%30%30%66%66%30%61%3B%22%3E%42%6C%6F%67%67%65%72%42%79%74%65%2E%4E%65%74%3C%2F%73%70%61%6E%3E%3C%2F%61%3E'));
+//]]>
+</script>
+  </body>
+</html>
