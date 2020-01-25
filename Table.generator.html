@@ -1,0 +1,106 @@
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'/>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' type='text/javascript'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js'></script>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div id="tg_pg" ng-app="myApp" ng-controller="myCtrl">
+<form>
+ <div style="border: 1px solid gray;border-radius: 5px; padding: 5px;margin-bottom:10px">
+  <div style="margin: 0 auto;border: 1px solid #d5d5d5;padding: 10px;margin-bottom: 10px;background: #3a4fb7;color: #fff;  border-radius: 3px;">
+    <div style="display:inline-block;width:100%;border:1px solid #fff;border-radius:3px;margin-top:10px;padding:6px 0px;"> 
+     <div style="display:inline-block;width:130px">
+    <label style="padding-left: 8px;"><b>Table</b> Color</label>
+     </div>
+     <span>
+      <input type="color" name="tablecolor" ng-model="tableColor" ng-change="formDataChanged()">
+     </span><br/><br/>
+     <div style="display:inline-block;width:130px">
+    <label style="margin-left: 8px;">Text Color</label>
+     </div>
+     <span>
+      <input type="color" name="tabletextcolor" ng-model="tableTextColor" ng-change="formDataChanged()">
+     </span><br/><br/>
+     <div style="display:inline-block;width:130px">
+    <label style="margin-left: 8px;">Border Color</label>
+     </div>
+     <span>
+      <input type="color" name="bordercolor" ng-model="borderColor" ng-change="formDataChanged()">
+     </span>
+    </div>
+    <div style="display:inline-block;width:100%;border:1px solid #fff;border-radius:3px;margin-top:10px"> 
+     <div style="display:inline-block">
+    <input type="checkbox" id="isheader" ng-model="isHeader" ng-change="formDataChanged()">
+    <label for="isheader"><b>Header</b></label>
+     </div>
+     <span ng-show="isHeader">
+      <input type="color" name="headcolor" ng-model="headerColor" ng-change="formDataChanged()">
+     </span>
+     <div style="display:inline-block">
+    <label for="isheader"ng-show="isHeader"  style="margin-left: 22px;">Text Color</label>
+     </div>
+     <span ng-show="isHeader">
+      <input type="color" name="headtextcolor" ng-model="headerTextColor" ng-change="formDataChanged()">
+     </span>
+    </div>
+    <div style="display:inline-block;width:240px;border:1px solid #fff;border-radius:3px;margin-top:10px"> 
+     <div style="display:inline-block">
+    <input type="checkbox" id="isStriped" ng-model="isStriped" ng-change="formDataChanged()">
+    <label for="isStriped">Striped Table</label>
+     </div>
+     <span ng-show="isStriped">
+      <input type="color" name="striperColor" ng-model="striperColor" ng-change="formDataChanged()">
+     </span>
+    </div>
+    <div style="display:inline-block;width:240px;border:1px solid #fff;border-radius:3px;margin-top:10px"> 
+     <div style="display:inline-block">
+    <input type="checkbox" id="isHoverRows" ng-model="isHoverRows" ng-change="formDataChanged()">
+    <label for="isHoverRows">Hover Rows</label>
+     </div>
+     <span ng-show="isHoverRows">
+      <input type="color" name="hoverRowsColor" ng-model="hoverRowsColor" ng-change="formDataChanged()">
+     </span>
+    </div>
+    <div style="margin-top:10px;margin-bottom:10px">
+    <label>Rows</label>
+    <input type="number" min='0' max='200' ng-model="row" ng-change="createTableData()" ng-change="formDataChanged()"/>
+    
+    <label>Columns</label>
+    <input type="number" min='0' max='15' ng-model="col" ng-change="createTableData()" ng-change="formDataChanged()" />
+    </div>
+   </div>
+  </div>
+  <div>
+  </div>
+</form>
+<desktop-mobile></desktop-mobile>
+<div>
+<h4>Edit Table Content</h4>
+ <div style="width:200px;">
+  
+  <div ng-repeat='(key, val) in heads track by $index'>
+  <input type="text" ng-model="val" ng-change="headChanged(key, val)" style="padding:5px;margin-bottom:5px;" />
+  </div>
+ </div>
+</div>
+<edit-tables></edit-tables>
+<h4>HTML Table Generator Generated Code</h4>
+<code-generater dat="{heads:heads, data: data, selectedTableType:selectedTableType, isHeader:isHeader, headerColor:headerColor, isStriped:isStriped, striperColor:striperColor, isHoverRows:isHoverRows, hoverRowsColor:hoverRowsColor, isBorderCells:isBorderCells,borderCellsColor:borderCellsColor,tableColor:tableColor,borderColor:borderColor,tableTextColor:tableTextColor,headerTextColor:headerTextColor}"></code-generater>
+</div>
+<center><button class="gradient-button gradient-button-4" id="txtarea" onclick="copyToClipboard();">COPY TO CLIPBOARD</button>
+<br/>
+<i>Copy the above code and use it in your web application or blogger post.</i></center>
+<br/>
+<script>
+var _0x1b58=['</td>','restrict','targetScope','<table\x20id=\x27simple_table\x27\x20>','hoverRowsColor','editVal','\x0a</table>','\x0a#simple_table\x20tr:hover\x20{\x0a\x09background-color:\x20','data','compile','col',';\x0a\x09color:','\x20col\x20','tableColor','</tr>\x0a','formDataChanged','dat','#ffffff','isHoverRows','headChanged','$scope','changValue','#ffff99','codeGenerater','#808080','forEach','heads','borderColor','tableTextColor','$apply','$$hashKey','striperColor','white','<input\x20type=\x27text\x27\x20value=\x27{{dat.val}}\x27\x20style=\x27padding:5px\x27/>',';\x0a}\x0a','black','\x0a<tr>','\x09<th>','keyup','push','\x0a<tr>\x0a',';\x0a}','$timeout','#simple_table\x20tr:nth-child(even)\x20{\x0a\x09background-color:\x20','isStriped','head\x20','$parent','target',';\x0a\x09\x20color:\x20','$broadcast','bind','#simple_table\x20tr\x20>\x20th\x20\x0a{\x0a\x09background:\x20','length','editTables','headerColor','generatedCode','$window','runCodeGenerator','link','\x0a</tr>','.responsive_container','myTables','<style>\x0a#simple_table\x20{\x0a\x09font-family:\x20arial,\x20sans-serif;\x0a\x09\x20border-collapse:\x20collapse;\x20\x0a\x09\x20width:\x20100%;\x0a\x09background-color:\x20','controller','createTableData','\x0a\x09<td>','scope','<div\x20style=\x27width:100%;overflow:auto;border:1px\x20solid\x20gray;margin-bottom:25px;\x27><table><tr><th\x20ng-repeat=\x27(key,\x20val)\x20in\x20heads\x27\x20style=\x27border:1px\x20solid\x20gray\x27>{{\x20val\x20}}</th></tr><tr\x20ng-repeat=\x27row\x20in\x20data\x27><td\x20ng-repeat=\x27column\x20in\x20row\x27><edit-val\x20dat=\x27{a:$parent.$index,b:$index,val:column}\x27\x20></edit-val></td></tr></table></div>','template','row','#1b90bb','module','directive','desktopMobile','headerTextColor','pop'];(function(_0x1caba3,_0x4b07dd){var _0x5aa9f0=function(_0x563940){while(--_0x563940){_0x1caba3['push'](_0x1caba3['shift']());}};_0x5aa9f0(++_0x4b07dd);}(_0x1b58,0x1b8));var _0x71f8=function(_0x1caba3,_0x4b07dd){_0x1caba3=_0x1caba3-0x0;var _0x5aa9f0=_0x1b58[_0x1caba3];return _0x5aa9f0;};var app=angular[_0x71f8('0xb')]('myApp',[]);app[_0x71f8('0x3')]('myCtrl',[_0x71f8('0x24'),function(_0x3250ed){_0x3250ed[_0x71f8('0x9')]=0x3,_0x3250ed[_0x71f8('0x1a')]=0x3,_0x3250ed[_0x71f8('0x2a')]=[],_0x3250ed[_0x71f8('0x18')]=[],_0x3250ed[_0x71f8('0x1d')]='#ffffff',_0x3250ed[_0x71f8('0x2c')]=_0x71f8('0x33'),_0x3250ed[_0x71f8('0x2b')]=_0x71f8('0x28'),_0x3250ed['isHeader']=!0x0,_0x3250ed[_0x71f8('0x46')]=_0x71f8('0xa'),_0x3250ed[_0x71f8('0xe')]=_0x71f8('0x21'),_0x3250ed[_0x71f8('0x3c')]=!0x0,_0x3250ed[_0x71f8('0x2f')]='#dddddd',_0x3250ed[_0x71f8('0x22')]=!0x0,_0x3250ed[_0x71f8('0x14')]=_0x71f8('0x26'),_0x3250ed['whiteColor']=_0x71f8('0x30'),_0x3250ed['formDataChanged']=function(){_0x3250ed[_0x71f8('0x41')](_0x71f8('0x49'),_0x3250ed);},_0x3250ed['changValue']=function(_0x25fb12,_0x388a0f,_0x4fc71a){_0x3250ed['data'][_0x25fb12][_0x388a0f]=_0x4fc71a,_0x3250ed[_0x71f8('0x2d')](),_0x3250ed[_0x71f8('0x1f')]();};_0x3250ed[_0x71f8('0x4')]=function(){if(_0x3250ed['heads']=[],_0x3250ed[_0x71f8('0x18')][_0x71f8('0x44')]>_0x3250ed['row'])for(var _0x470c13=_0x3250ed['data']['length']-_0x3250ed[_0x71f8('0x9')],_0x5b343f=0x0;_0x5b343f<_0x470c13;_0x5b343f++)_0x3250ed[_0x71f8('0x18')][_0x71f8('0xf')]();for(_0x5b343f=0x0;_0x5b343f<_0x3250ed[_0x71f8('0x9')];_0x5b343f++){_0x3250ed[_0x71f8('0x18')]['length']==_0x5b343f&&_0x3250ed[_0x71f8('0x18')][_0x71f8('0x37')]({});for(var _0x12a8ac=0x0;_0x12a8ac<_0x3250ed['col'];_0x12a8ac++)void 0x0===_0x3250ed[_0x71f8('0x18')][_0x5b343f][_0x71f8('0x1a')+_0x12a8ac]&&(_0x3250ed[_0x71f8('0x18')][_0x5b343f][_0x71f8('0x1a')+_0x12a8ac]=_0x71f8('0x9')+(_0x5b343f+0x1)+_0x71f8('0x1c')+(_0x12a8ac+0x1)),0x0==_0x5b343f&&_0x3250ed['heads'][_0x71f8('0x37')](_0x71f8('0x3d')+(_0x12a8ac+0x1));for(_0x12a8ac=_0x3250ed[_0x71f8('0x1a')];_0x12a8ac<0x10;_0x12a8ac++)delete _0x3250ed[_0x71f8('0x18')][_0x5b343f][_0x71f8('0x1a')+_0x12a8ac];}_0x3250ed[_0x71f8('0x1f')]();},_0x3250ed[_0x71f8('0x23')]=function(_0x1b7f43,_0xee413c){_0x3250ed['heads'][_0x1b7f43]=_0xee413c,_0x3250ed['formDataChanged']();},_0x3250ed['createTableData']();}]),app[_0x71f8('0xc')](_0x71f8('0xd'),[_0x71f8('0x48'),_0x71f8('0x3a'),function(_0x4803a5,_0x27a5ed){return{'restrict':'E','scope':'=','template':function(_0x4803a5,_0x27a5ed){return'<div\x20class=\x27responsive_container\x27><div\x20class=\x27row\x27><div\x20class=\x27column\x20desktop_column\x27><div\x20id=\x27desktop_view\x27><my-tables></my-tables></div></div><div\x20class=\x27column\x20mobile_column\x27><div\x20id=\x27mobile_view\x27><my-tables></my-tables></div></div></div></div>';},'link':function(_0x4803a5,_0x27a5ed,_0x1d81ce){$(_0x71f8('0x0'));}};}]),app[_0x71f8('0xc')](_0x71f8('0x1'),function(){return{'restrict':'E','scope':'=','template':function(_0x482470,_0xf40c3){return'\x20<table\x20class=\x27simple_table\x27ng-style=\x27{background:\x20tableColor,color:tableTextColor}\x27\x20><tr\x20ng-show=isHeader><th\x20ng-style=\x27{background:\x20headerColor,borderColor:borderColor,color:headerTextColor}\x27\x20\x20ng-repeat=\x27(key,\x20val)\x20in\x20heads\x27>{{\x20val\x20}}</th></tr><tr\x20ng-repeat=\x27row\x20in\x20data\x27\x20\x20ng-mouseenter=\x27hover\x20=\x20isHoverRows\x27\x20\x20\x20\x20\x20ng-mouseleave=\x27hover\x20=\x20false\x27\x20ng-style=\x27{background:\x20($index%2==0\x20&&\x20isStriped\x20&&\x20!hover)?striperColor:(hover)?hoverRowsColor:whiterColor}\x27><td\x20ng-style=\x27{borderColor:borderColor}\x27\x20ng-repeat=\x27column\x20in\x20row\x27\x20>{{\x20column\x20}}</td></tr></table>';},'link':function(_0xbf4155,_0x491a89,_0x5e2ac0){},'compile':function(_0x5e36c1,_0x54f0c0,_0x4b9fee){}};}),app[_0x71f8('0xc')](_0x71f8('0x45'),function(){return{'restrict':'E','scope':'=','template':function(_0x5607e4,_0x1a04d9){return _0x71f8('0x7');},'link':function(_0x161eee,_0x13090e,_0x1aa29a){}};}),app[_0x71f8('0xc')](_0x71f8('0x15'),function(){return{'restrict':'E','scope':{'dat':'='},'template':function(_0x54c4a2,_0x26a572){return _0x71f8('0x31');},'link':function(_0x4d4138,_0xf62509,_0xac611a){_0xf62509[_0x71f8('0x42')](_0x71f8('0x36'),function(_0xf62509){var _0x192e54=null,_0x163977=null;angular[_0x71f8('0x29')](_0x4d4138['$parent']['$parent'][_0x71f8('0x3e')][_0x71f8('0x18')],function(_0xf62509,_0xac611a){var _0x498ccc=_0xac611a,_0x480a93=0x0;angular[_0x71f8('0x29')](_0xf62509,function(_0xf62509,_0xac611a){_0x71f8('0x2e')!=_0xac611a&&(_0x4d4138['dat']['a']==_0x498ccc&&_0x4d4138[_0x71f8('0x20')]['b']==_0x480a93&&(_0x192e54=_0x498ccc,_0x163977=_0xac611a),_0x480a93++);});}),_0x4d4138[_0x71f8('0x3e')][_0x71f8('0x3e')][_0x71f8('0x3e')][_0x71f8('0x25')](_0x192e54,_0x163977,_0xf62509[_0x71f8('0x3f')]['value']);});}};}),app[_0x71f8('0xc')](_0x71f8('0x27'),function(){return{'restrict':'E','scope':{'dat':'='},'template':function(_0x497b5c,_0x3d90d9,_0x47033b){return'<textarea id="txtarea" name="ecode" readonly="yes"\x20ng-model=\x27generatedCode\x27\x20readonly></textarea>';},'link':function(_0x250bee,_0x2f81e2,_0x2bbbce){function _0x5c004c(_0x2f81e2){var _0x2bbbce=_0x71f8('0x2')+_0x2f81e2[_0x71f8('0x1d')]+_0x71f8('0x1b')+_0x2f81e2['tableTextColor']+';\x0a}\x0a#simple_table\x20td,\x20#simple_table\x20th\x20{\x0a\x09\x20text-align:\x20left;\x0a\x09\x20padding:\x208px;\x0a\x09\x20border:\x201px\x20solid\x20'+_0x2f81e2[_0x71f8('0x2b')]+_0x71f8('0x32');_0x2f81e2[_0x71f8('0x3c')]&&(_0x2bbbce=_0x2bbbce+_0x71f8('0x3b')+_0x2f81e2[_0x71f8('0x2f')]+_0x71f8('0x39')),_0x2f81e2[_0x71f8('0x22')]&&(_0x2bbbce=_0x2bbbce+_0x71f8('0x17')+_0x2f81e2[_0x71f8('0x14')]+_0x71f8('0x32')),_0x2f81e2['isHeader']&&(_0x2bbbce=_0x2bbbce+_0x71f8('0x43')+_0x2f81e2['headerColor']+_0x71f8('0x40')+_0x2f81e2[_0x71f8('0xe')]+_0x71f8('0x39')),_0x2bbbce+='\x0a</style>\x0a\x20',_0x2bbbce+=_0x71f8('0x13'),_0x2f81e2['isHeader']&&(_0x2bbbce+=_0x71f8('0x38'),angular[_0x71f8('0x29')](_0x2f81e2[_0x71f8('0x2a')],function(_0x2f81e2,_0x250bee){_0x2bbbce=_0x2bbbce+_0x71f8('0x35')+_0x2f81e2+'</th>\x0a';}),_0x2bbbce+=_0x71f8('0x1e')),angular[_0x71f8('0x29')](_0x2f81e2['data'],function(_0x2f81e2,_0x250bee){_0x2bbbce+=_0x71f8('0x34'),angular[_0x71f8('0x29')](_0x2f81e2,function(_0x2f81e2,_0x250bee){_0x71f8('0x2e')!=_0x250bee&&(_0x2bbbce=_0x2bbbce+_0x71f8('0x5')+_0x2f81e2+_0x71f8('0x10'));}),_0x2bbbce+=_0x71f8('0x4b');}),_0x2bbbce+=_0x71f8('0x16'),_0x250bee[_0x71f8('0x47')]=_0x2bbbce;}_0x5c004c(_0x250bee[_0x71f8('0x20')]),_0x250bee['$on'](_0x71f8('0x49'),function(_0x2f81e2){_0x5c004c(_0x2f81e2[_0x71f8('0x12')]);});}};});
+function code_check(){
+    var focuscheck=document.getElementById('txtarea');if(focuscheck.value.indexOf('Paste your code here...')>0)focuscheck.value='';} 
+function copyToClipboard() {
+    $("#txtarea").select();
+  document.execCommand("copy"); 
+} 
+</script>
+<style>
+body.item-view .Blog .post-body{font-family:'Open Sans',sans-serif,Helvetica,Arial;margin-right:0;font-size:17px;line-height:150%}#tg_pg .responsive_container{width:100%;position:relative}#tg_pg .responsive_container #desktop_view,#tg_pg .responsive_container #mobile_view{border:30px solid #03f4c9;height:450px;border-radius:25px;overflow:auto}#tg_pg .responsive_container .row{text-align:center}#tg_pg .responsive_container .column{text-align:left;display:inline-block}#tg_pg .responsive_container .desktop_column{width:100%;margin-right:10px}#tg_pg .responsive_container .mobile_column{width:50%}#tg_pg textarea{width:100%;height:1100px;background-color:#004d40;color:#fff;font-size:18px}@media (max-width: 767px){#mobile_view{display:none}}input[type=checkbox] + label{display:block;margin:.2em;cursor:pointer;padding:.2em;line-height:normal;user-select:none}input[type=checkbox]{display:none}input[type=checkbox] + label:before{content:"\2714";border:.1em solid #000;border-radius:.2em;display:inline-block;width:1em;height:1em;padding-left:.2em;padding-bottom:.3em;margin-right:.2em;vertical-align:bottom;color:transparent;transition:.2s}input[type=checkbox] + label:active:before{transform:scale(0)}input[type=checkbox]:checked + label:before{background-color:#3cb371;border-color:#3cb371;color:#fff}input[type=checkbox]:disabled + label:before{transform:scale(1);border-color:#aaa}input[type=checkbox]:checked:disabled + label:before{transform:scale(1);background-color:#bfb;border-color:#bfb}.simple_table{font-family:arial,sans-serif;border-collapse:collapse;width:100%;word-break:normal}.simple_table td,.simple_table th{text-align:left;padding:8px;border:1px solid gray}.simple_table tr > th{color:#FFF}.link-tabs{background:#25a186;color:#fff !important;padding:8px;display:inline-block;margin:8px 0;border-radius:3px;text-decoration:none}.link-tabs:hover{text-decoration:underline}input[type=number]{color:#000000;}
+.gradient-button{margin:10px;font-family:"Arial Black",Gadget,sans-serif;font-size:10px;padding:10px;text-align:center;text-transform:uppercase;transition:.5s;background-size:200% auto;color:#fff;box-shadow:0 0 20px #eee;border-radius:10px;width:200px;box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);transition:all .3s cubic-bezier(.25,.8,.25,1);cursor:pointer;display:inline-block;border-radius:25px}.gradient-button:hover{box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);margin:8px 10px 12px}.gradient-button-4{background-image:linear-gradient(to right,#00d2ff 0,#3a7bd5 51%,#00d2ff 100%)}.gradient-button-4:hover{background-position:right center}
+</style>
+</div>
