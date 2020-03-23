@@ -1,0 +1,25 @@
+<center>
+<font face="Arial"><b>You will be redirected Templates Site in<br><br>
+<form>
+<input type="text" size="3" id="timer" name="redirect2" value="5">
+</form>
+Seconds</b></font>
+</center>
+<script>
+<!--
+var targetURL="https://web.bloggerbyte.net"
+var currentsecond=5;
+function countredirect(){
+if (currentsecond!=1){
+currentsecond-=1
+document.getElementById('timer').value=currentsecond;
+}
+else{
+window.location=targetURL;
+return
+}
+setTimeout("countredirect()",1000)
+}
+countredirect();
+//-->
+</script>
