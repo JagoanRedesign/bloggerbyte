@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JavaScript Deobfuscator and Unpacker | BloggerByte</title>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css' rel='stylesheet'/>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<style type='text/css'>
+@keyframes hover-color{from{border-color:#5A5A5A}to{border-color:#b5e853}}
+.magic-radio,.magic-checkbox{position:absolute;display:none}
+.magic-radio[disabled],.magic-checkbox[disabled]{cursor:not-allowed}
+.magic-radio+label,.magic-checkbox+label{position:relative;display:block;padding-left:30px;cursor:pointer;vertical-align:middle}
+.magic-radio+label:hover:before,.magic-checkbox+label:hover:before{animation-duration:0.4s;animation-fill-mode:both;animation-name:hover-color}
+.magic-radio+label:before,.magic-checkbox+label:before{position:absolute;top:0;left:0;display:inline-block;width:20px;height:20px;content:'';border:1px solid #5A5A5A}
+.magic-radio+label:after,.magic-checkbox+label:after{position:absolute;display:none;content:''}
+.magic-radio[disabled]+label,.magic-checkbox[disabled]+label{cursor:not-allowed;color:#7e7e7e}
+.magic-radio[disabled]+label:hover,.magic-radio[disabled]+label:before,.magic-radio[disabled]+label:after,.magic-checkbox[disabled]+label:hover,.magic-checkbox[disabled]+label:before,.magic-checkbox[disabled]+label:after{cursor:not-allowed}
+.magic-radio[disabled]+label:hover:before,.magic-checkbox[disabled]+label:hover:before{border:1px solid #7e7e7e;animation-name:none}
+.magic-radio[disabled]+label:before,.magic-checkbox[disabled]+label:before{border-color:#7e7e7e}
+.magic-radio:checked+label:before,.magic-checkbox:checked+label:before{animation-name:none}
+.magic-radio:checked+label:after,.magic-checkbox:checked+label:after{display:block}
+.magic-radio+label:before{border-radius:50%}
+.magic-radio+label:after{top:7px;left:7px;width:8px;height:8px;border-radius:50%;background:#b5e853}
+.magic-radio:checked+label:before{border:1px solid #b5e853}
+.magic-radio:checked[disabled]+label:before{border:1px solid #effada}
+.magic-radio:checked[disabled]+label:after{background:#effada}
+.magic-checkbox+label:before{border-radius:3px}
+.magic-checkbox+label:after{top:2px;left:7px;box-sizing:border-box;width:6px;height:12px;transform:rotate(45deg);border-width:2px;border-style:solid;border-color:#fff;border-top:0;border-left:0}
+.magic-checkbox:checked+label:before{border:#b5e853;background:#b5e853}
+.magic-checkbox:checked[disabled]+label:before{border:#effada;background:#effada}
+#output{display:none}
+.config{font-size:smaller;color:#595656}
+.config input{margin-right:4px;vertical-align:middle}
+.config input:checked+label{color:#eaeaea}
+.config label{display:inline-block;margin:.5em}
+.center{text-align:center;margin:20px 0}
+.btn:active,.btn:focus,.btn:hover{outline:0 none}
+.btn:active{background:rgba(0,0,0,0.8);color:#b5e853}
+.btn::-moz-focus-inner{border:0 none}
+#view{transition:opacity ease-in-out .2s}
+#view.waiting{opacity:.3}
+.magic-radio[disabled]+label{color:#ff2323}
+.magic-radio[disabled]+label:before,.magic-radio[disabled]+label:hover:before{border-color:#ff2323}
+#offline{display:none;font-size:.4em;text-transform:uppercase;color:#afafaf;margin-left:1em;padding:1px 4px;border:1px solid #111;background:#444;border-radius:4px;text-shadow:initial}
+#offline.show{display:inline-block}
+#nicify+label{color:#ffeb3b}
+#nicify+label:before{border-color:#ffeb3b}
+#nicify+label:hover:before{animation-name:special-hover-color}
+#nicify+label:after{background:#9C27B0}
+#nicify[disabled]+label{color:#000}
+#nicify[disabled]+label:before{border-color:#000}
+#nicify[disabled]+label:hover:before{animation:initial}
+#nicify:checked+label{color:#9C27B0}
+#nicify:checked+label:before{border-color:#9C27B0}
+textarea{min-height:180px;min-width:100%}input[type=button],button{display:inline-block;margin:5px}
+#tool p:not(:last-child){margin:0 0 20px}#tool{max-width:inherit;padding:10px 20px;border:.1px dashed rgba(0,0,0,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.1)}#tool section{display:none;padding:20px 0 0;border-top:1px solid #abc}#tool input.hidden{display:none}#tool label{display:inline-block;margin:0 0 -1px;padding:8px 15px;font-weight:600;text-align:center;color:#abc;border:1px solid transparent}#tool section label{color:#222;padding:0px;margin:10px auto auto}#tool label:before{font-family:fontawesome;font-weight:400;margin-right:10px}#tool label[for*='1']:before{content:'\f13b'}#tool label[for*='2']:before{content:'\f13c'}#tool label[for*='3']:before{content:'\f121'}#tool label[for*='4']:before{content:'\f013'}#tool label[for*='5']:before{content:'\f1c9'}#tool label:hover{color:#789;cursor:pointer}#tool input:checked+label{color:var(--background);border:1px solid #abc;border-top:2px solid var(--background);border-bottom:1px solid #fff}#tool #tab1:checked~#content1,#tool #tab2:checked~#content2,#tool #tab3:checked~#content3,#tool #tab4:checked~#content4,#tool #tab5:checked~#content5{display:block}@media screen and (max-width:800px){#tool label{font-size:0}#tool section label{font-size:18px}#tool label:before{margin:0;font-size:18px}}@media screen and (max-width:500px){label{padding:15px}}</style>
+</head>
+<body>
+<style>.magic-radio-wrap{width:200px;display:inline-block}#output{display:none}.config{font-size:smaller;color:#595656}.magic-radio[disabled]+label{color:#ff2323}.magic-radio[disabled]+label,.magic-checkbox[disabled]+label{cursor:not-allowed}.center.buttons .btn{display:inline-block;margin:10px}.packer-footer{position:relative}.view-control{position:absolute;top:0;right:0}.view-control .small-btn{display:inline-block;background:#fff;border:0 none;box-shadow:initial;border-radius:0;cursor:pointer;width:40px;height:40px;padding:0;line-height:40px;transition:background 200ms;text-align:center;float:right;color:#000;border-radius:6px;margin:5px 3px 0 0;border:2px solid}.view-control .small-btn:hover{color:#fff;background:#000}.view-wrap pre.hljs{min-height:140px;position:relative}</style><section id="main_content"><form class="wrap" name="bvDecode"><div id="tool"><input class="hidden" id="tab1" type="radio" name="tabs" checked=""> <label for="tab1">Paste Code</label> <input class="hidden" id="tab2" type="radio" name="tabs"> <label for="tab2">Local File</label> <input class="hidden" id="tab3" type="radio" name="tabs"> <label for="tab3">Remote File</label><section id="content1"><br />
+<textarea id="input" class="content" placeholder="Paste Obfuscated JavaScript Code Here..."></textarea><textarea id="output" class='hidden'></textarea></section><section id="content2"><input type='file' onchange="loadFileAsText(this, 'textarea#input')"/></section><section id="content3"><input type='url' placeholder='Enter JavaScript File URL Here'/><button id='load-url'>Load File</button></section></div><div class="config center"><div class='magic-radio-wrap'><input id="none" type="radio" class="magic-radio" value="" name="encode" checked><label for="none">None</label></div><div class='magic-radio-wrap'><input id="evalencode" type="radio" class="magic-radio" value="evalencode" name="encode"><label for="evalencode">Eval</label></div><div class='magic-radio-wrap'><input id="arrayencode" type="radio" class="magic-radio" value="arrayencode" name="encode"><label for="arrayencode">Array</label></div><div class='magic-radio-wrap'><input id="_numberencode" type="radio" class="magic-radio" value="_numberencode" name="encode"><label for="_numberencode">_Number</label></div><div class='magic-radio-wrap'><input id="jsfuck" type="radio" class="magic-radio" value="jsfuck" name="encode"><label for="jsfuck">JSFuck</label></div><div class='magic-radio-wrap'><input id="jjencode" type="radio" class="magic-radio" value="jjencode" name="encode"><label for="jjencode">JJencode</label></div><div class='magic-radio-wrap'><input id="aaencode" type="radio" class="magic-radio" value="aaencode" name="encode"><label for="aaencode">AAencode</label></div><div class='magic-radio-wrap'><input id="urlencode" type="radio" class="magic-radio" value="urlencode" name="encode"><label for="urlencode">URLencode</label></div><div class='magic-radio-wrap'><input id="p_a_c_k_e_r" type="radio" class="magic-radio" value="p_a_c_k_e_r" name="encode"><label for="p_a_c_k_e_r">Packer</label></div><div class='magic-radio-wrap'><input id="javascriptobfuscator" type="radio" class="magic-radio" value="javascriptobfuscator" name="encode"><label for="javascriptobfuscator">Javascript Obfuscator</label></div><div class='magic-radio-wrap'><input id="myobfuscate" type="radio" class="magic-radio" value="myobfuscate" name="encode"><label for="myobfuscate">My Obfuscate</label></div><input id="nicify" type="radio" class="magic-radio" value="nicify" name="encode" disabled><label for="nicify">Unreadable</label></div><div class="config center"><input id="beautify" class="magic-checkbox" type="checkbox" name="beautify" checked><label for="beautify">Beautify</label><input id="auto" class="magic-checkbox" type="checkbox" name="auto"><label for="auto">Auto</label></div><div class="center"><button id="redecode" type="button">Continue decoding</button><button id="clear" type="reset">Clear</button></div><br />
+<blockquote>Please wait for a while after pasting the code in the above field your code is being deobfuscated.</blockquote><br />
+<div class='packer-footer'><div class="view-wrap"><pre id="view" class="hljs mac-window">Paste Your Code or upload File and select right encoding type!</pre></div><div class='view-control'><span id="downloadfile" onclick="saveTextAsFile('Javascript-Obfuscator.js', 'pre.hljs');" class="small-btn" type="button"><i class="fas fa-download"></i></span><span id="copyjs" class="small-btn" type="button"><i class="fas fa-clipboard"></i></span><a id="preview" class="small-btn" type="button" href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a></div></div></form></section><br />
+ <script type="text/javascript" src="https://raw.githack.com/softwebtuts/softwebtuts.com/master/clipboard.min.js"></script><br />
+<script type="text/javascript">!(function () {
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function () {
+            var context = this,
+                args = arguments;
+            var later = function () {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    }
+ function createWorker(workerUrl) {
+ var worker = null;
+ try {
+  worker = new Worker(workerUrl);
+ } catch (e) {
+  try {
+   var blob;
+   try {
+    blob = new Blob(["importScripts('" + workerUrl + "');"], { "type": 'application/javascript' });
+   } catch (e1) {
+    var blobBuilder = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder)();
+    blobBuilder.append("importScripts('" + workerUrl + "');");
+    blob = blobBuilder.getBlob('application/javascript');
+   }
+   var url = window.URL || window.webkitURL;
+   var blobUrl = url.createObjectURL(blob);
+   worker = new Worker(blobUrl);
+  } catch (e2) {
+   //if it still fails, there is nothing much we can do
+  }
+ }
+ return worker;
+}
+ 
+    function updateOnlineStatus() {
+        if (navigator.onLine) {
+            offlineBadge.classList.remove('show');
+        } else {
+            offlineBadge.classList.add('show');
+        }
+    }
+
+    var input = document.getElementById('input'),
+        output = document.getElementById('output'),
+        view = document.getElementById('view'),
+
+        encode = document.getElementsByName('encode'),
+
+        beautify = document.getElementById('beautify'),
+        auto = document.getElementById('auto'),
+
+        redecode = document.getElementById('redecode'),
+        clear = document.getElementById('clear'),
+
+        preview = document.getElementById('preview'),
+
+        clipboard = new ClipboardJS('#copyjs', {
+            target: function() {
+                return view;
+            }
+        }),
+
+        offlineBadge = document.getElementById('offline'),
+
+        startEffect = function () {
+            if (output.value === '') view.textContent = 'Please wait...';
+            view.classList.add('waiting');
+        },
+        stopEffect = function () {
+            view.classList.remove('waiting');
+        },
+
+        resetcopy = function (trigger) {
+            if (!trigger.classList.contains('copied')) return;
+            trigger.classList.remove('copied');
+        },
+        timereset = function (trigger) {
+            setTimeout(function () {
+                resetcopy(trigger);
+            }, 800);
+        },
+
+        externalStyle = '*{margin:0;padding:0}html{line-height:1em;background:#1d1f21;color:#c5c8c6}pre{counter-reset:line-numbers;white-space:pre-wrap;word-wrap:break-word;word-break:break-all}code::before{counter-increment:line-numbers;content:counter(line-numbers);display:block;position:absolute;left:-4.5em;top:0;width:4em;text-align:right;color:#60686f;white-space:pre}code{display:block;position:relative;margin-left:4em;padding-left:.5em;min-height:1em;border-left:1px solid #32363b}pre{padding:.5em .5em .5em 5em;border-left:1px solid #1d1f21}pre.hljs{padding-left:.5em;border-left:0 none}code::after{content:".";visibility:hidden} .hljs-comment,.hljs-quote{color:#969896}.hljs-variable,.hljs-template-variable,.hljs-tag,.hljs-name,.hljs-selector-id,.hljs-selector-class,.hljs-regexp,.hljs-deletion{color:#c66}.hljs-number,.hljs-built_in,.hljs-builtin-name,.hljs-literal,.hljs-type,.hljs-params,.hljs-meta,.hljs-link{color:#de935f}.hljs-attribute{color:#f0c674}.hljs-string,.hljs-symbol,.hljs-bullet,.hljs-addition{color:#b5bd68}.hljs-title,.hljs-section{color:#81a2be}.hljs-keyword,.hljs-selector-tag{color:#b294bb}.hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}',
+        externalUrl,
+        externalPreview = function (source) {
+            if (externalUrl) URL.revokeObjectURL(externalUrl);
+
+            source = '<html><head><meta charset="utf-8"><title>JavaScript DeObfuscator | Preview</title><style>' + externalStyle + '</style></head><body><pre class="hljs">' + source + '</pre></body></html>';
+
+            externalUrl = new Blob([source], {
+                type: 'text/html'
+            });
+            externalUrl = URL.createObjectURL(externalUrl);
+
+            preview.classList.add('show');
+            preview.href = externalUrl;
+        },
+
+        workerFormat,
+        workerDecode,
+
+        format = debounce(function () {
+            var source = output.value.trim();
+
+            if (source === '') return;
+
+            if (!workerFormat) {
+                workerFormat = createWorker('https://raw.githack.com/softwebtuts/softwebtuts.com/master/format.js');
+                workerFormat.addEventListener('message', function (e) {
+                    view.innerHTML = e.data;
+                    externalPreview(e.data);
+
+                    stopEffect();
+                });
+            }
+
+            startEffect();
+            workerFormat.postMessage({
+                source: source,
+                beautify: beautify.checked
+            });
+        }, 250),
+
+        detect = function (source) {
+            var type = '';
+
+            if (/^[\s\n]*var\s_\d{4};[\s\n]*var\s_\d{4}\s?=/.test(source)) {
+                type = '_numberencode';
+            } else if (source.indexOf("/&#65344;ｍ&#180;&#65289;ﾉ ~&#9531;&#9473;&#9531;   //*&#180;&#8711;&#65344;*/ ['_'];") !== -1) { // eslint-disable-line quotes
+                type = 'aaencode';
+            } else if (source.indexOf('$={___:++$,$$$$:(![]+"")[$]') !== -1) {
+                type = 'jjencode';
+            } else if (source.replace(/[[\]()!+]/gm, '').trim() === '') {
+                type = 'jsfuck';
+            } else if (source.indexOf(' ') === -1 && (source.indexOf('%2') !== -1 || source.replace(/[^%]+/g, '').length > 3)) {
+                type = 'urlencode';
+            } else if (/^[\s\n]*var\s_0x\w+\s?=\s?\["/.test(source)) {
+                type = 'arrayencode';
+            } else if (source.indexOf('eval(') !== -1) {
+                if (/\b(window|document|console)\.\b/i.test(source)) return type;
+                type = 'evalencode';
+            }
+
+            document.querySelector('.magic-radio:checked').checked = false;
+            document.querySelector('.magic-radio[value="' + type + '"]').checked = true;
+
+            return type;
+        },
+
+        decode = debounce(function () {
+            var source = input.value.trim(),
+                packer = document.bvDecode.encode.value;
+
+            if (source === '') return;
+            if (auto.checked) packer = detect(source);
+
+            if (packer === 'nicify') return;
+            if (packer === '') {
+                output.value = source;
+                format();
+                return;
+            }
+
+            if (!workerDecode) {
+                workerDecode = createWorker('https://raw.githack.com/softwebtuts/softwebtuts.com/master/decode.js');
+                workerDecode.addEventListener('message', function (e) {
+                    output.value = e.data;
+
+                    if (auto.checked && input.value !== output.value) {
+                        redecode.onclick();
+                    } else {
+                        format();
+                    }
+                });
+            }
+
+            startEffect();
+            output.value = '';
+            workerDecode.postMessage({
+                source: source,
+                packer: packer
+            });
+        }, 250);
+
+    input.oninput = debounce(function () {
+        decode();
+    });
+    for (var i = 0; i < encode.length; i++) {
+        encode[i].onchange = decode;
+    }
+
+    beautify.onchange = format;
+
+    auto.onchange = function () {
+        for (var i = 0; i < encode.length; i++) {
+            if (encode[i].value === 'nicify') continue;
+            encode[i].disabled = auto.checked;
+        }
+        decode();
+    };
+
+    clipboard.on('success', function (e) {
+        e.trigger.classList.add('copied');
+        e.clearSelection();
+        timereset(e.trigger);
+alert("Text Copied To Clipboard !");
+    });
+    clipboard.on('error', function (e) {
+        e.trigger.classList.add('selected');
+        timereset(e.trigger);
+alert("An Error occured while copying text to Clipboard !");
+    });
+
+    redecode.onclick = function () {
+        input.value = output.value;
+        decode();
+    };
+
+    clear.onclick = function () {
+        view.textContent = 'Please choose a right encoding type & wait for a while after pasting code!';
+        stopEffect();
+        setTimeout(function() {
+            auto.onchange();
+        }, 0);
+
+        if (workerDecode) {
+            workerDecode.terminate();
+            workerDecode = undefined;
+        }
+        if (workerFormat) {
+            workerFormat.terminate();
+            workerFormat = undefined;
+        }
+
+        preview.classList.remove('show');
+    };
+
+    window.addEventListener('online',  updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus();
+
+})();</script><script>
+function loadFileAsText(e,t){var a=e.files[0],l=new FileReader;l.onload=function(e){var a=e.target.result;document.querySelector(t).value=a},l.readAsText(a,"UTF-8"),$("#tab1,input[type=checkbox]#auto").click(),$("#tab2").prop("checked", false),$("#tab1,input[type=checkbox]#auto").prop("checked", true)}
+function saveTextAsFile(e,t){var n=document.querySelector(t).innerText,o=new Blob([n],{type:"text/plain"}),l=e,d=document.createElement("a");d.download=l,d.innerHTML="Download File",null!=window.webkitURL?d.href=window.webkitURL.createObjectURL(o):(d.href=window.URL.createObjectURL(o),d.onclick=destroyClickedElement,d.style.display="none",document.body.appendChild(d)),d.click()}function destroyClickedElement(e){document.body.removeChild(e.target)}
+</script>
+ <div class="footer">
+    Copyright &#169; <script>document.write((new Date()).getFullYear());</script> BloggerByte.Net
+  </div>
+</div>
+<script type='text/javascript'>
+//<![CDATA[
+function asyncData(a,b){var c=document.createElement('script');c.src=a;c.onload=function(){if(typeof b=="function")b();b=null};c.onreadystatechange=function(){if(c.readyState==4||c.readyState=="complete"){if(typeof b=="function")b();b=null}};document.getElementsByTagName('head')[0].appendChild(c)}function loadCSS(e, t, n) { "use strict"; var i = window.document.createElement("link"); var o = t || window.document.getElementsByTagName("script")[0]; i.rel = "stylesheet"; i.href = e; i.media = "only x"; o.parentNode.insertBefore(i, o); setTimeout(function () { i.media = n || "all" })}function loadJS(scriptURL){!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src=scriptURL,(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()}loadCSS("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+function main(){
+$('input[type="range"]').each(function(){$(this).after('<span class="range-value">'+$(this).val()+"</span>"),$(this).on("mouseup input",function(){$(this).next(".range-value").html($(this).val())})});
+$('a.this').each(function(){$(this).attr('href');$(this).attr('href',window.location.href)});
+$.when($.cachedScript("https://raw.githack.com/softwebtuts/files/master/main.js"),$.Deferred(function(e){$(e.resolve)})).done(function(){console.log('All Functions Initialized')}).fail(function (e,o,c){alert("Error Occured Whils loading Files")})
+function generate(a,b,c,d){window.open(c)}
+$("p.comment-content").each(function(){var fix = $(this).html().replace(/(mark|strong|b|i|u|li|strike|code|pre)\{(.*?)\}/gm, "<$1>$2</$1>");$(this).html(fix)});
+loadCSS("https://raw.githack.com/softwebtuts/files/master/style.css");
+$('pre > code').each(function(){$(this).prepend('<div class="copy-code-wrap" ><div class="copy-code"></div></div>');$(this).on('click',function(e){var selector = $(this).closest('code');$(selector).selectText();e.preventDefault();alert("Successfully copied to clipboard")})});
+}
+$(document).one("scroll", function(){
+main();
+});
+//]]>
+    </script>
+</body>
+</html>
