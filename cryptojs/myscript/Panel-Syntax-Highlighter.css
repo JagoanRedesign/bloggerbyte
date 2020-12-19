@@ -1,0 +1,52 @@
+div#panelDecryptBloggerbyte {
+    padding: 5px;
+    box-shadow: 0 0 4px black;
+    border-radius: 10px;
+    background-color: #5f38e033;
+}
+input#inputPassword {
+    width: 50%;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+#buttonPassword, #buttonCopyku {
+    font-size: 15px;
+    padding: 5px;
+    width: 80px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #0dbb27;
+    color: #100c0c;
+}
+div#notifPassword {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+}
+#outputDecrypt {
+   height: 360px;
+   width: 98%;
+}
+.notifSucces {
+    color:green;
+}
+.areaButtonCopyku {
+    text-align: center;
+}
+.titlePanelSaveScript {
+    background-color: #2a42d0;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 15px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.areaPanelPass {
+    text-align: center;
+}
+.designBy {
+    font-size: 10px;
+    padding: 0;
+}
