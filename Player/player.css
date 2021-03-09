@@ -1,0 +1,39 @@
+/* How to Use - Visit www.bloggerbyte.net  */
+/* Main Player
+----------------------------------------------- */
+.bloggerbyte_player{height:100%;font-size:12px}
+.bloggerbyte_player *{margin:0;padding:0}
+.bloggerbyte_video{width:100%;background-color:#000;position:relative;overflow:hidden}
+.bloggerbyte_video iframe{width:100%;height:100%;position:absolute;top:0;left:0;display:none;background-color:#000}
+.bloggerbyte_server{width:100%;height:100%;position:absolute;top:0;left:0;display:none}
+.bloggerbyte_server video{width:100%;height:100%;background-color:#000}
+.bloggerbyte_list{width:100%;overflow:auto;background-color:#000}
+.bloggerbyte_list li{list-style:none;clear:both;border:1px dashed #333;border-left:5px solid #444;overflow:hidden;cursor:pointer}
+.bloggerbyte_list .selected{border-left:5px solid #00796b;background-color:#222222;border-right:3px solid #00796b}
+.bloggerbyte_list .selected div h2:after{font-family:"Font Awesome 5 Free";content:"\f144";font-size:12px;font-weight:600;margin:0 0 0 5px;animation:flash 2s infinite}
+.bloggerbyte_list img{float:left;width:80px;height:50px;margin:0 10px 0 0}
+.bloggerbyte_list div h2{width:100%;color:#fff;font-size:120%;font-weight:400;line-height:50px;text-align:left;margin:0}
+.bloggerbyte_control{width:100%;text-align:center;box-sizing:border-box;padding:20px;background-color:rgba(155,155,155,0.02);box-shadow:0 1px 4px rgba(0,0,0,0.16), 0 1px 4px rgba(0,0,0,0.23)}
+.bloggerbyte_control .active{background-color:#000}
+.bloggerbyte_button{background-color:#00796b;color:#fff;padding:9px 14px;cursor:pointer;margin:0 5px;border-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)}
+/* Loading Player
+----------------------------------------------- */
+.bloggerbyte_loading{position:absolute;text-align:center;font-size:200%;z-index:9999;display:none;width:100%;height:100%}
+.bloggerbyte_loading{position:absolute;top:50%;left:50%;width:20px;height:20px;transform:translate(-50%,-50%)}
+.bloggerbyte_loading .circlex{position:absolute;border-radius:50%;left:1px;top:1px;width:18px;height:18px;background:#fff;animation:spinVideoFirstTurn 1.5s 0s infinite both}
+.bloggerbyte_loading .circley{position:absolute;border-radius:50%;width:20px;height:20px;background:#00796b;animation:spinVideoSecondTurn 1.4s 0s infinite both}
+/* Player Video Icons
+----------------------------------------------- */
+.bloggerbyte_player i.fab.fa-google-drive, .bloggerbyte_player i.fab.fa-youtube, .bloggerbyte_player i.fab.fa-vimeo, .bloggerbyte_player i.fab.fa-facebook-square, .bloggerbyte_player i.fab.fa-odnoklassniki, .bloggerbyte_player i.fas.fa-video{background:#ffffff;width:25px;height:25px;line-height:25px;text-align:center;border-radius:3px;margin:0 5px 0 0}
+.bloggerbyte_player i.fab.fa-google-drive{color:#2c9f45}
+.bloggerbyte_player i.fab.fa-youtube{color:#DA5E4C}
+.bloggerbyte_player i.fab.fa-vimeo{color:#1ab7ea}
+.bloggerbyte_player i.fab.fa-facebook-square{color:#3b5998}
+.bloggerbyte_player i.fab.fa-odnoklassniki{color:#ee8208}
+.bloggerbyte_player i.fas.fa-video{color:#F06292;font-size:12px}
+/* Player Animation
+----------------------------------------------- */
+@-webkit-keyframes flash{0%,100%,50%{opacity:1}25%,75%{opacity:0}}
+@keyframes flash{0%,100%,50%{opacity:1}25%,75%{opacity:0}}
+@keyframes spinVideoFirstTurn{0%,100%{box-shadow:0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b}50%{transform:rotate(180deg)}25%,75%{box-shadow:28px 0 0 #00796b,-28px 0 0 #00796b,0 28px 0 #00796b,0 -28px 0 #00796b,20px -20px 0 #00796b,20px 20px 0 #00796b,-20px -20px 0 #00796b,-20px 20px 0 #00796b}100%{transform:rotate(360deg);box-shadow:0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b}}
+@keyframes spinVideoSecondTurn{0%,100%{box-shadow:0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b}50%{transform:rotate(-180deg)}25%,75%{box-shadow:52px 0 0 #00796b,-52px 0 0 #00796b,0 52px 0 #00796b,0 -52px 0 #00796b,38px -38px 0 #00796b,38px 38px 0 #00796b,-38px -38px 0 #00796b,-38px 38px 0 #00796b;background:transparent}100%{transform:rotate(-360deg);box-shadow:0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b,0 0 0 #00796b}}
